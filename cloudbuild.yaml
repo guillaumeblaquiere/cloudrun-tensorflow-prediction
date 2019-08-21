@@ -1,6 +1,7 @@
 steps:
+  # Retrieve the exported model by the training
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: [ 'cp', '-r', '${_EXPORT_BUCKET}', '.' ]
+    args: [ 'cp', '-r', '${_EXPORT_BUCKET}', './tf_models' ]
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/predict', '.' ]
   # push the container image to Container Registry
