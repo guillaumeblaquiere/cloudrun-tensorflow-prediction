@@ -3,7 +3,7 @@ FROM  gcr.io/google-containers/ubuntu-slim:0.14
 # Copy the exporter models. Directory pattern should be /<model>/<version>
 # Only the latest version is run by the tensorflow serving
 # Take care of the number of model in exporter directory, can grow your container. 
-COPY tf_models tf_models
+COPY exporter tf_models
 
 # Install manually TensorflowServing
 RUN apt update && \
