@@ -1,9 +1,9 @@
 steps:
   # Retrieve the exported model by the training
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: [ 'cp', '-r', '${_EXPORT_BUCKET}', '.' ]
+    args: [ '-m', 'cp', '-r', '${_EXPORT_BUCKET}', '.' ]
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/predict', '.' ]
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/predict', '.', '-f', 'Dockerfile.optim' ]
   # push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/predict']
